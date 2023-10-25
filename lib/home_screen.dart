@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen>
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: const Text(
-          "iKEA Clone",
+          "ARHome",
           style: TextStyle(
             fontSize: 18,
             letterSpacing: 2,
