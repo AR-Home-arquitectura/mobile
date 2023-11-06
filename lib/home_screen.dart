@@ -4,22 +4,17 @@ import 'package:arhome/items.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget
-{
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-
-
-
-class _HomeScreenState extends State<HomeScreen>
-{
+// Stateless widget
+class _HomeScreenState extends State<HomeScreen> {
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -34,9 +29,9 @@ class _HomeScreenState extends State<HomeScreen>
         ),
         actions: [
           IconButton(
-            onPressed: ()
-            {
-              Navigator.push(context, MaterialPageRoute(builder: (c)=> ItemsUploadScreen()));
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (c) => ItemsUploadScreen()));
             },
             icon: const Icon(
               Icons.add,
@@ -50,17 +45,14 @@ class _HomeScreenState extends State<HomeScreen>
             .collection("items")
             .orderBy("publishedDate", descending: true)
             .snapshots(),
-        builder: (context, AsyncSnapshot dataSnapshot)
-        {
-          if(dataSnapshot.hasData)
-          {
+        builder: (context, AsyncSnapshot dataSnapshot) {
+          if (dataSnapshot.hasData) {
             return ListView.builder(
               itemCount: dataSnapshot.data!.docs.length,
-              itemBuilder: (context, index)
-              {
+              itemBuilder: (context, index) {
                 Items eachItemInfo = Items.fromJson(
-                    dataSnapshot.data!.docs[index].data() as Map<String, dynamic>
-                );
+                    dataSnapshot.data!.docs[index].data()
+                        as Map<String, dynamic>);
 
                 return ItemUIDesignWidget(
                   itemsInfo: eachItemInfo,
@@ -68,9 +60,7 @@ class _HomeScreenState extends State<HomeScreen>
                 );
               },
             );
-          }
-          else
-          {
+          } else {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: const [
