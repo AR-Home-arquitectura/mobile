@@ -63,6 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             );
           } else {
+            // Column list added
             return Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: const [
