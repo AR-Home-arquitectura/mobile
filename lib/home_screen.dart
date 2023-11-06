@@ -28,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        // Upload item button
         actions: [
           IconButton(
             onPressed: () {
