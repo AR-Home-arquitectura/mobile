@@ -247,7 +247,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen>
         String imageUniqueName = DateTime.now().millisecondsSinceEpoch.toString();
 
         fStorage.Reference firebaseStorageRef = fStorage.FirebaseStorage.instance.ref()
-            .child("Items Images")
+            .child("Items-Images")
             .child(imageUniqueName);
 
         fStorage.UploadTask uploadTaskImageFile = firebaseStorageRef.putData(imageFileUint8List!);
