@@ -2,7 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:arhome/models/item.model.dart';
 import 'package:flutter/material.dart';
 
-import '../item_details_screen.dart';
+import '../pages/item-details.page.dart';
 import '../utils/human-formats.dart';
 
 
@@ -53,7 +53,7 @@ class ItemCard extends StatelessWidget {
                   }
 
                   return GestureDetector(
-                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (c)=> ItemDetailsScreen(
+                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (c)=> ItemDetailsPage(
                         clickedItemInfo: item,
                       ))),
                       child: FadeIn(child: child));

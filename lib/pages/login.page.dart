@@ -74,17 +74,17 @@ class _LoginPageState extends State<LoginPage> {
                 height: 30,
               ),
               GestureDetector(
-                onTap: () {
-                  setState(() async {
-                    final user = await _signIn();
-                    if (user != null) {
+                onTap: () async {
+                  final user = await _signIn();
+                  if (user != null) {
+                    setState(() {
                       userProvider.updateCurrentUser(user);
                       showToast(message: "User is successfully signed in");
                       Navigator.pushNamed(context, "/home");
-                    } else {
-                      showToast(message: "some error occured");
-                    }
-                  });
+                    });
+                  } else {
+                    showToast(message: "Some error occurred");
+                  }
                 },
                 child: Container(
                   width: double.infinity,

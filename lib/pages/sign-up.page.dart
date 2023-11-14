@@ -80,13 +80,11 @@ class _SignUpPageState extends State<SignUpPage> {
                 height: 30,
               ),
               GestureDetector(
-                onTap:  (){
-                  setState(() async {
-                    final user = await _signUp();
-
+                onTap: () async {
+                  final user = await _signUp();
+                  setState(() {
                     if (user != null) {
                       userProvider.updateCurrentUser(user);
-
                       showToast(message: "User is successfully created");
                       Navigator.pushNamed(context, "/home");
                     } else {

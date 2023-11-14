@@ -1,19 +1,18 @@
-import 'package:arhome/items.dart';
 import 'package:arhome/models/item.model.dart';
 import 'package:arhome/virtual_ar_view_screen.dart';
 import 'package:flutter/material.dart';
 
-class ItemDetailsScreen extends StatefulWidget
+class ItemDetailsPage extends StatefulWidget
 {
   ItemModel? clickedItemInfo;
 
-  ItemDetailsScreen({super.key, this.clickedItemInfo,});
+  ItemDetailsPage({super.key, this.clickedItemInfo,});
 
   @override
-  State<ItemDetailsScreen> createState() => _ItemDetailsScreenState();
+  State<ItemDetailsPage> createState() => _ItemDetailsPageState();
 }
 
-class _ItemDetailsScreenState extends State<ItemDetailsScreen>
+class _ItemDetailsPageState extends State<ItemDetailsPage>
 {
   @override
   Widget build(BuildContext context)
@@ -24,13 +23,14 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen>
         backgroundColor: Colors.black,
         title: Text(
           widget.clickedItemInfo!.itemName.toString(),
+          style: const TextStyle(color: Colors.white),
         ),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: Colors.pinkAccent,
         onPressed: ()
         {
-          //try item virtually (arview)
           Navigator.push(context, MaterialPageRoute(builder: (c)=> VirtualARViewScreen(
             clickedItemImageLink: widget.clickedItemInfo!.itemImage.toString(),
           )));
