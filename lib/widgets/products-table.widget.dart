@@ -1,31 +1,39 @@
 import 'package:arhome/items_upload_screen.dart';
 import 'package:arhome/item_ui_design_widget.dart';
 import 'package:arhome/items.dart';
+import 'package:arhome/models/user.model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/user.provider.dart';
 
 // Statefull widget
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class ProductsTable extends StatefulWidget {
+  const ProductsTable({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<ProductsTable> createState() => _ProductsTableState();
 }
 
 // Stateless widget
-class _HomeScreenState extends State<HomeScreen> {
+class _ProductsTableState extends State<ProductsTable> {
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context);
+
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.black,
-        title: const Text(
-          "ARHome",
-          style: TextStyle(
+        title: Text(
+          "${userProvider.currentUser.email}",
+          style: const TextStyle(
             fontSize: 18,
             letterSpacing: 2,
             fontWeight: FontWeight.bold,
+            color: Colors.white
           ),
         ),
         // Upload item button
@@ -64,9 +72,9 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           } else {
             // Column list added
-            return Column(
+            return const Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
+              children: [
                 Center(
                   child: Text(
                     "Data is not available.",

@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:arhome/api_consumer.dart';
-import 'package:arhome/home_screen.dart';
+import 'package:arhome/widgets/products-table.widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -300,7 +300,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen>
       imageFileUint8List = null;
     });
 
-    Navigator.push(context, MaterialPageRoute(builder: (c)=> const HomeScreen()));
+    Navigator.push(context, MaterialPageRoute(builder: (c)=> const ProductsTable()));
   }
 
 
