@@ -1,19 +1,17 @@
 import 'package:arhome/items.dart';
+import 'package:arhome/models/item.model.dart';
 import 'package:arhome/virtual_ar_view_screen.dart';
 import 'package:flutter/material.dart';
 
 class ItemDetailsScreen extends StatefulWidget
 {
-  Items? clickedItemInfo;
+  ItemModel? clickedItemInfo;
 
-  ItemDetailsScreen({this.clickedItemInfo,});
+  ItemDetailsScreen({super.key, this.clickedItemInfo,});
 
   @override
   State<ItemDetailsScreen> createState() => _ItemDetailsScreenState();
 }
-
-
-
 
 class _ItemDetailsScreenState extends State<ItemDetailsScreen>
 {
@@ -85,7 +83,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen>
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Text(
-                  widget.clickedItemInfo!.itemPrice.toString() + " \$",
+                  "S/. ${widget.clickedItemInfo!.itemPrice}",
                   textAlign: TextAlign.justify,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,

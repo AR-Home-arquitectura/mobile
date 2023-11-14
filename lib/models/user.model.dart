@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 
-class UserModel with ChangeNotifier {
+
+class UserModel {
   late final String? id;
   late final String? email;
   late final String? displayName;

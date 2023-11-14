@@ -1,14 +1,15 @@
 import 'package:arhome/item_details_screen.dart';
 import 'package:arhome/items.dart';
+import 'package:arhome/models/item.model.dart';
 import 'package:flutter/material.dart';
 
 
 class ItemUIDesignWidget extends StatefulWidget
 {
-  Items? itemsInfo;
+  ItemModel? itemsInfo;
   BuildContext? context;
 
-  ItemUIDesignWidget({
+  ItemUIDesignWidget({super.key,
     this.itemsInfo,
     this.context,
   });
@@ -28,7 +29,6 @@ class _ItemUIDesignWidgetState extends State<ItemUIDesignWidget>
     return InkWell(
       onTap: ()
       {
-        //enviar al usuario a la pantalla de detalles
         Navigator.push(context, MaterialPageRoute(builder: (c)=> ItemDetailsScreen(
           clickedItemInfo: widget.itemsInfo,
         )));
