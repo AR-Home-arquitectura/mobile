@@ -1,8 +1,12 @@
 import 'dart:ffi';
 
 import 'package:arhome/models/item.model.dart';
+import 'package:arhome/services/shopping-cart.service.dart';
 import 'package:arhome/virtual_ar_view_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/user.provider.dart';
 
 class ItemDetailsPage extends StatefulWidget
 {
@@ -16,9 +20,14 @@ class ItemDetailsPage extends StatefulWidget
 
 class _ItemDetailsPageState extends State<ItemDetailsPage>
 {
+
+
   @override
   Widget build(BuildContext context)
   {
+    final userProvider = context.watch<UserProvider>();
+    final ShoppingCartService cartService = ShoppingCartService();
+
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -31,9 +40,13 @@ class _ItemDetailsPageState extends State<ItemDetailsPage>
       ),
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: Colors.orange,
-        onPressed: ()
-        {
+        onPressed: () async {
+            final userId = userProvider.currentUser?.id;
+            final itemId = widget.clickedItemInfo?.itemID;
 
+            if (userId != null && itemId != null) {
+                await cartService.addToCart(userId, itemId);
+            }
         },
         label: const Text(
           "AGREGAR AL CARRITO",

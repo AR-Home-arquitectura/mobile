@@ -1,28 +1,35 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:arhome/models/item.model.dart';
 import '../models/shpping-item-to-render.model.dart';
+import '../widgets/toast.widget.dart';
 
 class ShoppingCartService {
   final CollectionReference cartCollection =
   FirebaseFirestore.instance.collection('shoppingCart');
 
   Future<void> addToCart(String userId, String itemId) async {
-    final existingCartItem = await cartCollection
-        .where('userId', isEqualTo: userId)
-        .where('itemId', isEqualTo: itemId)
-        .get();
+    try {
+      final existingCartItem = await cartCollection
+          .where('userId', isEqualTo: userId)
+          .where('itemId', isEqualTo: itemId)
+          .get();
 
-    if (existingCartItem.docs.isNotEmpty) {
-      final existingItem = existingCartItem.docs.first;
-      await existingItem.reference.update({
-        'quantity': (existingItem['quantity'] ?? 0) + 1,
-      });
-    } else {
-      await cartCollection.add({
-        'userId': userId,
-        'itemId': itemId,
-        'quantity': 1,
-      });
+      if (existingCartItem.docs.isNotEmpty) {
+        final existingItem = existingCartItem.docs.first;
+        await existingItem.reference.update({
+          'quantity': (existingItem['quantity'] ?? 0) + 1,
+        });
+      } else {
+        await cartCollection.add({
+          'userId': userId,
+          'itemId': itemId,
+          'quantity': 1,
+        });
+      }
+
+      showToast(message: 'Product added to cart.');
+    } catch(e) {
+      showToast(message: 'Error while adding product.');
     }
   }
 

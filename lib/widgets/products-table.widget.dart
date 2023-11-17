@@ -1,5 +1,6 @@
 import 'package:arhome/items_upload_screen.dart';
 import 'package:arhome/models/item.model.dart';
+import 'package:arhome/pages/shopping-cart.page.dart';
 import 'package:arhome/widgets/item-card.widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -53,7 +54,8 @@ class _ProductsTableState extends State<ProductsTable> {
           ),
           IconButton(
             onPressed: () {
-              // AGREGAR ROUTER
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (c) => ShoppingCartPage()));
             },
             icon: const Icon(
               Icons.shopping_cart_outlined,

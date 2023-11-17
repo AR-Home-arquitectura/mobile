@@ -67,6 +67,7 @@ class FirebaseAuthService {
 
       if (userDoc.exists) {
         Map<String, dynamic> userData = userDoc.data() as Map<String, dynamic>;
+        userData['id'] = userId;
 
         UserModel user = UserModel.fromJson(userData);
         return user;
