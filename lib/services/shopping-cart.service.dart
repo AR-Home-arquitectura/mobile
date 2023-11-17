@@ -57,4 +57,27 @@ class ShoppingCartService {
       throw Exception("Item with ID $itemId not found");
     }
   }
+
+  Future<void> updateCartItemQuantity(
+      String userId, String itemId, int newQuantity) async {
+    try {
+      final existingCartItem = await cartCollection
+          .where('userId', isEqualTo: userId)
+          .where('itemId', isEqualTo: itemId)
+          .get();
+
+      if (existingCartItem.docs.isNotEmpty) {
+        final existingItem = existingCartItem.docs.first;
+        await existingItem.reference.update({
+          'quantity': newQuantity,
+        });
+      } else {
+        throw Exception('Item not found in cart.');
+      }
+
+      showToast(message: 'Cart updated.');
+    } catch (e) {
+      showToast(message: 'Error updating cart.');
+    }
+  }
 }
