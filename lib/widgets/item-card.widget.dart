@@ -43,7 +43,6 @@ class ItemCard extends StatelessWidget {
               child: Image.network(
                 item.itemImage,
                 fit: BoxFit.cover,
-                width: 150,
                 loadingBuilder: (context, child, loadingProgress) {
                   if (loadingProgress != null) {
                     return const Center(

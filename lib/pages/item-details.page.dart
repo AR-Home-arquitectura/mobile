@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:arhome/models/item.model.dart';
 import 'package:arhome/virtual_ar_view_screen.dart';
 import 'package:flutter/material.dart';
@@ -28,45 +30,69 @@ class _ItemDetailsPageState extends State<ItemDetailsPage>
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: Colors.pinkAccent,
+        backgroundColor: Colors.orange,
         onPressed: ()
         {
-          Navigator.push(context, MaterialPageRoute(builder: (c)=> VirtualARViewScreen(
-            clickedItemImageLink: widget.clickedItemInfo!.itemImage.toString(),
-          )));
+
         },
         label: const Text(
-          "Vista AR",
+          "AGREGAR AL CARRITO",
         ),
         icon: const Icon(
-          Icons.mobile_screen_share_rounded,
-          color: Colors.white,
+          Icons.shopping_cart,
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
-              Image.network(
-                widget.clickedItemInfo!.itemImage.toString(),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0, top: 8.0),
-                child: Text(
-                  widget.clickedItemInfo!.itemName.toString(),
-                  textAlign: TextAlign.justify,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    color: Colors.white70,
+              SizedBox(
+                height: 400,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Image.network(
+                    widget.clickedItemInfo!.itemImage.toString(),
                   ),
                 ),
               ),
-
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                children: [
+                  Text(
+                    widget.clickedItemInfo!.itemName.toString(),
+                    textAlign: TextAlign.justify,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Colors.white70,
+                    ),
+                  ),
+                  const Spacer(),
+                  FloatingActionButton.extended(
+                    backgroundColor: Colors.pinkAccent,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (c) => VirtualARViewScreen(
+                            clickedItemImageLink: widget.clickedItemInfo!.itemImage.toString(),
+                          ),
+                        ),
+                      );
+                    },
+                    label: const Text("Vista AR", style: TextStyle(color: Colors.white),),
+                    icon: const Icon(
+                      Icons.mobile_screen_share_rounded,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
               Padding(
                 padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 6.0),
                 child: Text(
@@ -79,7 +105,6 @@ class _ItemDetailsPageState extends State<ItemDetailsPage>
                   ),
                 ),
               ),
-
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Text(
@@ -92,7 +117,6 @@ class _ItemDetailsPageState extends State<ItemDetailsPage>
                   ),
                 ),
               ),
-
               const Padding(
                 padding: EdgeInsets.only(left: 8.0, right: 310.0),
                 child: Divider(
@@ -101,7 +125,6 @@ class _ItemDetailsPageState extends State<ItemDetailsPage>
                   color: Colors.white70,
                 ),
               ),
-
             ],
           ),
         ),
