@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 Future<void> main() async
 {
@@ -14,12 +15,13 @@ Future<void> main() async
   {
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp(
-      options: const FirebaseOptions(apiKey: "AIzaSyB8-oR5FGaIgwqXmc-5WyMniz8b9vLRpMA", appId: "1:1011775757111:web:f5d5ef9891e034055758b2", messagingSenderId: "1011775757111", projectId: "arhometest-cf0bc")
+      //Configuration added
+      options: DefaultFirebaseOptions.currentPlatform,
     );
   }
   catch (errorMsg)
   {
-    print("Error:: $errorMsg");
+    print("Error:: " + errorMsg.toString());
   }
 
   runApp(const MyApp());
