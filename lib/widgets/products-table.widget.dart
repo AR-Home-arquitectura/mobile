@@ -71,38 +71,27 @@ class _ProductsTableState extends State<ProductsTable> {
             .snapshots(),
         builder: (context, AsyncSnapshot dataSnapshot) {
           if (dataSnapshot.hasData) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(top: 20, left: 20, right: 20),
-                  child: Text(
-                    "Productos más populares",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: CupertinoColors.inactiveGray
+            return ListView.builder(
+              itemCount: (dataSnapshot.data!.docs.length / 2).ceil(),
+              itemBuilder: (context, index) {
+                int firstItemIndex = index * 2;
+                int secondItemIndex = firstItemIndex + 1;
+
+                return Row(
+                  children: [
+                    Expanded(
+                      child: firstItemIndex < dataSnapshot.data!.docs.length
+                          ? ItemCard(item: ItemModel.fromJson(dataSnapshot.data!.docs[firstItemIndex].data() as Map<String, dynamic>))
+                          : SizedBox.shrink(),
                     ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
-                    child: GridView.builder(
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 14,
-                        mainAxisSpacing: 16,
-                        childAspectRatio: 0.52,
-                      ),
-                      itemCount: dataSnapshot.data!.docs.length,
-                      itemBuilder: (context, index) {
-                        ItemModel item = ItemModel.fromJson(dataSnapshot.data!.docs[index].data() as Map<String, dynamic>);
-                        return ItemCard(item: item);
-                      },
+                    Expanded(
+                      child: secondItemIndex < dataSnapshot.data!.docs.length
+                          ? ItemCard(item: ItemModel.fromJson(dataSnapshot.data!.docs[secondItemIndex].data() as Map<String, dynamic>))
+                          : SizedBox.shrink(),
                     ),
-                  ),
-                ),
-              ],
+                  ],
+                );
+              },
             );
           } else {
             return const Center(

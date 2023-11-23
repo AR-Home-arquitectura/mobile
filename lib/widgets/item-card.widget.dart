@@ -20,6 +20,7 @@ class ItemCard extends StatelessWidget {
     final textStyle = Theme.of(context).textTheme;
 
     return Container(
+      margin: const EdgeInsets.all(8),
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
