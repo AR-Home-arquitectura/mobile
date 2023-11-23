@@ -40,7 +40,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text("SignUp"),
+        title: Text("Join ARHome"),
       ),
       body: Center(
         child: Padding(

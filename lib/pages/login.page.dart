@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text("Login"),
+        title: const Text("ARHome"),
       ),
       body: Center(
         child: Padding(
